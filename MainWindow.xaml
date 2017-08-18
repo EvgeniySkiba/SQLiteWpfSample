@@ -11,7 +11,7 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="phonesList" ItemsSource="{Binding}">
+        <ListBox x:Name="phonesList" ItemsSource="{Binding Phones}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -23,9 +23,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить" Margin="10" Click="Add_Click" />
-            <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
-            <Button Content="Удалить" Margin="10" Click="Delete_Click"  />
+            <Button Content="Добавить" Margin="10" Command="{Binding AddCommand}"  />
+            <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}"
+                    CommandParameter="{Binding ElementName=phonesList, Path=SelectedItem}"  />
+            <Button Content="Удалить" Margin="10" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=phonesList, Path=SelectedItem}"  />
         </StackPanel>
     </Grid>
 </Window>
