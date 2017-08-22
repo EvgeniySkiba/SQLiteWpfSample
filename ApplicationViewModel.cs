@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SQLiteWpfSample.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
@@ -25,25 +27,49 @@ namespace SQLiteWpfSample
 
         public ApplicationViewModel()
         {
-            db = new ApplicationContext();
-            db.Phones.Load();
-            // загружаем данные из бд в локальный кэш:
-            Phones = db.Phones.Local.ToBindingList();
+            int b = 10;
+            try
+            {
+                db = new ApplicationContext();
+                db.Phones.Load();
+                // загружаем данные из бд в локальный кэш:
+                Phones = db.Phones.Local.ToBindingList();
+            }
+            catch(Exception ex)
+            {
+                int a = 10;
+            }
         }
         // команда добавления
         public RelayCommand AddCommand
         {
-            get
+            get 
             {
                 return addCommand ??
                   (addCommand = new RelayCommand((o) =>
                   {
-                      PhoneWindow phoneWindow = new PhoneWindow(new Phone());
+                      /*  PhoneWindow phoneWindow = new PhoneWindow(new Phone() { Status = (int)Status.Bad});
+                        if (phoneWindow.ShowDialog() == true)
+                        {
+                            Phone phone = phoneWindow.Phone;
+                            db.Phones.Add(phone);
+                            db.SaveChanges();
+                        }*/
+
+                      PhoneWindow2 phoneWindow = new PhoneWindow2(new PhoneViewModel());
                       if (phoneWindow.ShowDialog() == true)
                       {
-                          Phone phone = phoneWindow.Phone;
-                          db.Phones.Add(phone);
-                          db.SaveChanges();
+                          PhoneViewModel phone = phoneWindow.PhoneViewModel;
+                          var test = phone.CurrentStatus;
+                         /* Phone newPhone = new Phone()
+                          {
+                              Id = phone.ID,
+                              Company = phone.Company,
+                              Title = phone.Title
+                          };
+                          
+                           db.Phones.Add(newPhone);*/
+                         // db.SaveChanges();
                       }
                   }));
             }

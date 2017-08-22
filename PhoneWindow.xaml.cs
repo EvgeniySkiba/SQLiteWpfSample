@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace SQLiteWpfSample
 {
     /// <summary>
     /// Interaction logic for PhoneWindow.xaml
     /// </summary>
-    public partial class PhoneWindow : Window
+    public partial class PhoneWindow : Window, INotifyPropertyChanged
     {
         public Phone Phone { get; private set; }
 
@@ -20,5 +21,28 @@ namespace SQLiteWpfSample
         {
             this.DialogResult = true;
         }
+        public void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private Status _Status;
+        public Status Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                _Status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

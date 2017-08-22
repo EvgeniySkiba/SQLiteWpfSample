@@ -13,6 +13,7 @@ namespace SQLiteWpfSample
         private string title;
         private string company;
         private int price;
+        private int status;
 
         public int Id { get; set; }
 
@@ -42,7 +43,18 @@ namespace SQLiteWpfSample
                 price = value;
                 OnPropertyChanged("Price");
             }
+        }         
+
+        public int Status
+        {
+            get { return status; }
+            set
+            {
+                status = value;
+                OnPropertyChanged("Status");
+            }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

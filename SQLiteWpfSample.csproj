@@ -79,7 +79,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationViewModel.cs" />
+    <Compile Include="EnumDescriptionTypeConverter.cs" />
+    <Compile Include="EnumerationExtension.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\KeyValueHelper.cs" />
+    <Compile Include="PhoneWindow2.xaml.cs">
+      <DependentUpon>PhoneWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="ViewModel\PhoneViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +103,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PhoneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhoneWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
